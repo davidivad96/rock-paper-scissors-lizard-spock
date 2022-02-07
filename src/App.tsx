@@ -1,18 +1,14 @@
-import logo from '../public/logo.jpg';
-import './App.css';
+import { Box, Container, Typography } from '@mui/material';
 
 const App = () => (
-  <div className="App">
-    <header className="App-header">
-      <img src={logo} className="App-logo" alt="logo" />
-      <p>
-        Edit <code>src/App.js</code> and save to reload.
-      </p>
-      <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-        Learn React
-      </a>
-    </header>
-  </div>
+  <Box
+    height="100vh"
+    sx={{ backgroundImage: 'radial-gradient(circle at top, hsl(214, 47%, 23%), hsl(237, 49%, 15%))' }}
+  >
+    <Container maxWidth="desktop">
+      <Typography>Hello world!</Typography>
+    </Container>
+  </Box>
 );
 
 export default App;
