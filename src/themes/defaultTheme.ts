@@ -8,6 +8,7 @@ declare module '@mui/material/styles' {
     lg: false;
     xl: false;
     mobile: true;
+    tablet: true;
     desktop: true;
   }
 }
@@ -25,7 +26,8 @@ const theme = createTheme({
   },
   breakpoints: {
     values: {
-      mobile: 0,
+      mobile: 375,
+      tablet: 600,
       desktop: 1366,
     },
   },
