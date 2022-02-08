@@ -1,5 +1,20 @@
-import { Box, BoxProps, Button, ButtonProps, Container, styled, useMediaQuery, useTheme } from '@mui/material';
+import {
+  Box,
+  BoxProps,
+  Button,
+  ButtonProps,
+  Container,
+  Paper,
+  PaperProps,
+  Stack,
+  styled,
+  useMediaQuery,
+  useTheme,
+} from '@mui/material';
 import { Header } from './components';
+import paper from '../public/icon-paper.svg';
+import scissors from '../public/icon-scissors.svg';
+import rock from '../public/icon-rock.svg';
 import triangle from '../public/bg-triangle.svg';
 
 const Root = styled(Box)<BoxProps>({
@@ -17,6 +32,28 @@ const RulesButton = styled(Button)<ButtonProps>(({ theme }) => ({
   alignSelf: 'flex-end',
   [theme.breakpoints.down('tablet')]: {
     alignSelf: 'center',
+  },
+}));
+
+const OptionPaper = styled(Paper)<PaperProps>(({ theme }) => ({
+  width: '150px',
+  height: '150px',
+  lineHeight: '180px',
+  textAlign: 'center',
+  borderRadius: '50%',
+  border: '15px solid',
+  boxShadow: 'inset 0px 6px rgb(0 0 0 / 20%)',
+  zIndex: 100,
+  cursor: 'pointer',
+  ':hover': {
+    boxShadow: 'inset 0px 6px rgb(0 0 0 / 30%)',
+    opacity: 0.9,
+  },
+  [theme.breakpoints.down('tablet')]: {
+    width: '100px',
+    height: '100px',
+    lineHeight: '120px',
+    borderWidth: '10px',
   },
 }));
 
@@ -38,7 +75,25 @@ const App = () => {
         }}
       >
         <Header />
-        <img src={triangle} alt="triangle" width={isSmallDevice ? 200 : 300} />
+        <Stack direction="row" justifyContent="space-between" spacing="5rem">
+          <OptionPaper sx={{ borderColor: 'hsl(230, 89%, 65%)' }}>
+            <img src={paper} alt="paper" width={isSmallDevice ? '45px' : '65px'} />
+          </OptionPaper>
+          <OptionPaper sx={{ borderColor: 'hsl(40, 84%, 53%)' }}>
+            <img src={scissors} alt="scissors" width={isSmallDevice ? '45px' : '65px'} />
+          </OptionPaper>
+        </Stack>
+        <OptionPaper sx={{ borderColor: 'hsl(349, 70%, 56%)' }}>
+          <img src={rock} alt="rock" width={isSmallDevice ? '45px' : '65px'} />
+        </OptionPaper>
+        <Box position="absolute">
+          <img
+            src={triangle}
+            alt="triangle"
+            width={isSmallDevice ? 220 : 280}
+            style={{ position: 'relative', zIndex: 10, top: '70px' }}
+          />
+        </Box>
         <RulesButton>RULES</RulesButton>
       </Container>
     </Root>
