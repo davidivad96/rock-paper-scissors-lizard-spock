@@ -1,4 +1,4 @@
-import { Box, BoxProps, Button, ButtonProps, Container, styled } from '@mui/material';
+import { Box, BoxProps, Button, ButtonProps, Container, styled, useMediaQuery, useTheme } from '@mui/material';
 import { Header } from './components';
 import triangle from '../public/bg-triangle.svg';
 
@@ -20,24 +20,29 @@ const RulesButton = styled(Button)<ButtonProps>(({ theme }) => ({
   },
 }));
 
-const App = () => (
-  <Root>
-    <Container
-      maxWidth="desktop"
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        flex: 1,
-        justifyContent: 'space-around',
-        alignItems: 'center',
-        paddingX: '3rem',
-      }}
-    >
-      <Header />
-      <img src={triangle} alt="triangle" width={350} />
-      <RulesButton>RULES</RulesButton>
-    </Container>
-  </Root>
-);
+const App = () => {
+  const theme = useTheme();
+  const isSmallDevice = useMediaQuery(theme.breakpoints.down('tablet'));
+
+  return (
+    <Root>
+      <Container
+        maxWidth="desktop"
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          flex: 1,
+          justifyContent: 'space-around',
+          alignItems: 'center',
+          paddingX: '3rem',
+        }}
+      >
+        <Header />
+        <img src={triangle} alt="triangle" width={isSmallDevice ? 200 : 300} />
+        <RulesButton>RULES</RulesButton>
+      </Container>
+    </Root>
+  );
+};
 
 export default App;
