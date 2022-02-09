@@ -17,7 +17,7 @@ const theme = createTheme({
   typography: {
     fontFamily: ['Barlow Semi Condensed', '"Helvetica Neue"', 'Arial', 'sans-serif', 'Roboto'].join(','),
     fontWeightRegular: 500,
-    fontWeightBold: 600,
+    fontWeightBold: 700,
   },
   palette: {
     text: {
