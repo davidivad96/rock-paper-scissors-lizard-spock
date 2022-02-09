@@ -27,22 +27,23 @@ const OptionButton = styled(Paper)<PaperProps>(({ theme }) => ({
 
 interface Props {
   isSmallDevice: boolean;
+  className?: string;
 }
 
-const PaperButton: React.FunctionComponent<Props> = ({ isSmallDevice }) => (
-  <OptionButton sx={{ borderColor: 'hsl(230, 89%, 65%)' }}>
+const PaperButton: React.FunctionComponent<Props> = ({ isSmallDevice, className }) => (
+  <OptionButton sx={{ borderColor: 'hsl(230, 89%, 65%)' }} className={className}>
     <img src={paper} alt="paper" width={isSmallDevice ? '45px' : '65px'} />
   </OptionButton>
 );
 
-const ScissorsButton: React.FunctionComponent<Props> = ({ isSmallDevice }) => (
-  <OptionButton sx={{ borderColor: 'hsl(40, 84%, 53%)' }}>
+const ScissorsButton: React.FunctionComponent<Props> = ({ isSmallDevice, className }) => (
+  <OptionButton sx={{ borderColor: 'hsl(40, 84%, 53%)' }} className={className}>
     <img src={scissors} alt="scissors" width={isSmallDevice ? '45px' : '65px'} />
   </OptionButton>
 );
 
-const RockButton: React.FunctionComponent<Props> = ({ isSmallDevice }) => (
-  <OptionButton sx={{ borderColor: 'hsl(349, 70%, 56%)' }}>
+const RockButton: React.FunctionComponent<Props> = ({ isSmallDevice, className }) => (
+  <OptionButton sx={{ borderColor: 'hsl(349, 70%, 56%)' }} className={className}>
     <img src={rock} alt="rock" width={isSmallDevice ? '45px' : '65px'} />
   </OptionButton>
 );

@@ -1,6 +1,6 @@
 import { Box, BoxProps, Button, ButtonProps, Container, Stack, styled, useMediaQuery, useTheme } from '@mui/material';
+import LineTo from 'react-lineto';
 import { Header, PaperButton, RockButton, ScissorsButton } from './components';
-import triangle from '../public/bg-triangle.svg';
 
 const Root = styled(Box)<BoxProps>({
   backgroundImage: 'radial-gradient(circle at top, hsl(214, 47%, 23%), hsl(237, 49%, 15%))',
@@ -39,20 +39,15 @@ const App = () => {
       >
         <Header />
         <Stack direction="row" justifyContent="space-between" spacing="5rem">
-          <PaperButton isSmallDevice={isSmallDevice} />
-          <ScissorsButton isSmallDevice={isSmallDevice} />
+          <PaperButton isSmallDevice={isSmallDevice} className="A" />
+          <ScissorsButton isSmallDevice={isSmallDevice} className="B" />
         </Stack>
-        <RockButton isSmallDevice={isSmallDevice} />
-        <Box position="absolute">
-          <img
-            src={triangle}
-            alt="triangle"
-            width={isSmallDevice ? 220 : 280}
-            style={{ position: 'relative', zIndex: 10, top: '70px' }}
-          />
-        </Box>
+        <RockButton isSmallDevice={isSmallDevice} className="C" />
         <RulesButton>RULES</RulesButton>
       </Container>
+      <LineTo from="A" to="B" zIndex={10} delay={0} borderWidth={14} borderColor="rgba(0,0,0,0.3)" />
+      <LineTo from="A" to="C" zIndex={10} delay={0} borderWidth={14} borderColor="rgba(0,0,0,0.3)" />
+      <LineTo from="B" to="C" zIndex={10} delay={0} borderWidth={14} borderColor="rgba(0,0,0,0.3)" />
     </Root>
   );
 };
