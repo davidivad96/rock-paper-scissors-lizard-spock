@@ -22,6 +22,13 @@ const RulesButton = styled(Button)<ButtonProps>(({ theme }) => ({
   },
 }));
 
+const LineToProps = {
+  zIndex: 10,
+  delay: 0,
+  borderWidth: 14,
+  borderColor: 'rgba(0, 0, 0, 0.3)',
+};
+
 const App = () => {
   const theme = useTheme();
   const isSmallDevice = useMediaQuery(theme.breakpoints.down('tablet'));
@@ -56,9 +63,9 @@ const App = () => {
         <RockButton isSmallDevice={isSmallDevice} className="C" />
         <RulesButton onClick={openModal}>RULES</RulesButton>
       </Container>
-      <LineTo from="A" to="B" zIndex={10} delay={0} borderWidth={14} borderColor="rgba(0,0,0,0.3)" />
-      <LineTo from="A" to="C" zIndex={10} delay={0} borderWidth={14} borderColor="rgba(0,0,0,0.3)" />
-      <LineTo from="B" to="C" zIndex={10} delay={0} borderWidth={14} borderColor="rgba(0,0,0,0.3)" />
+      <LineTo from="A" to="B" {...LineToProps} />
+      <LineTo from="A" to="C" {...LineToProps} />
+      <LineTo from="B" to="C" {...LineToProps} />
       <RulesModal isOpened={isModalOpened} onClose={closeModal} isSmallDevice={isSmallDevice} />
     </Root>
   );
