@@ -10,13 +10,8 @@ const OptionButton = styled(Paper)<PaperProps>(({ theme }) => ({
   textAlign: 'center',
   borderRadius: '50%',
   border: '15px solid',
-  boxShadow: 'inset 0px 6px rgb(0 0 0 / 20%)',
   zIndex: 100,
   cursor: 'pointer',
-  ':hover': {
-    boxShadow: 'inset 0px 6px rgb(0 0 0 / 30%)',
-    opacity: 0.9,
-  },
   [theme.breakpoints.down('tablet')]: {
     width: '100px',
     height: '100px',
@@ -31,19 +26,37 @@ interface Props {
 }
 
 const PaperButton: React.FunctionComponent<Props> = ({ isSmallDevice, className }) => (
-  <OptionButton sx={{ borderColor: 'hsl(230, 89%, 65%)' }} className={className}>
+  <OptionButton
+    sx={{
+      borderColor: 'hsl(230, 89%, 65%)',
+      boxShadow: 'inset 0px 6px rgb(0 0 0 / 20%), 0 6px hsl(230, 89%, 56%)',
+    }}
+    className={className}
+  >
     <img src={paper} alt="paper" width={isSmallDevice ? '45px' : '65px'} />
   </OptionButton>
 );
 
 const ScissorsButton: React.FunctionComponent<Props> = ({ isSmallDevice, className }) => (
-  <OptionButton sx={{ borderColor: 'hsl(40, 84%, 53%)' }} className={className}>
+  <OptionButton
+    sx={{
+      borderColor: 'hsl(40, 84%, 53%)',
+      boxShadow: 'inset 0px 6px rgb(0 0 0 / 20%), 0 6px hsl(39, 89%, 43%)',
+    }}
+    className={className}
+  >
     <img src={scissors} alt="scissors" width={isSmallDevice ? '45px' : '65px'} />
   </OptionButton>
 );
 
 const RockButton: React.FunctionComponent<Props> = ({ isSmallDevice, className }) => (
-  <OptionButton sx={{ borderColor: 'hsl(349, 70%, 56%)' }} className={className}>
+  <OptionButton
+    sx={{
+      borderColor: 'hsl(349, 70%, 56%)',
+      boxShadow: 'inset 0px 6px rgb(0 0 0 / 20%), 0 6px hsl(349, 71%, 46%)',
+    }}
+    className={className}
+  >
     <img src={rock} alt="rock" width={isSmallDevice ? '45px' : '65px'} />
   </OptionButton>
 );
