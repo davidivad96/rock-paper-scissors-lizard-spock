@@ -12,6 +12,10 @@ const OptionButton = styled(Paper)<PaperProps>(({ theme }) => ({
   border: '15px solid',
   zIndex: 100,
   cursor: 'pointer',
+  ':hover': {
+    transition: 'transform 1s',
+    transform: 'scale(1.2)',
+  },
   [theme.breakpoints.down('tablet')]: {
     width: '100px',
     height: '100px',
