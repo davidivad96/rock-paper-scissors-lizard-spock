@@ -5,7 +5,7 @@ import scissors from '../../public/icon-scissors.svg';
 import rock from '../../public/icon-rock.svg';
 import { GameChoice } from '../interfaces';
 
-const OptionButton = styled(Paper)<PaperProps>(({ theme }) => ({
+export const OptionButton = styled(Paper)<PaperProps>(({ theme }) => ({
   position: 'absolute',
   width: '150px',
   height: '150px',

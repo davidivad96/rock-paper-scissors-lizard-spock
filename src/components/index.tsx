@@ -2,6 +2,7 @@ import Header from './Header';
 import RulesModal from './RulesModal';
 import RulesButton from './RulesButton';
 import { PaperButton, ScissorsButton, RockButton } from './GameButtons';
+import ComputerChoice from './ComputerChoice';
 import { YouPickedSubtitle, TheHousePickedSubtitle } from './Subtitles';
 
 export {
@@ -11,6 +12,7 @@ export {
   PaperButton,
   ScissorsButton,
   RockButton,
+  ComputerChoice,
   YouPickedSubtitle,
   TheHousePickedSubtitle,
 };

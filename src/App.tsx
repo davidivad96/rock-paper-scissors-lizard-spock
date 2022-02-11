@@ -9,6 +9,7 @@ import {
   ScissorsButton,
   YouPickedSubtitle,
   TheHousePickedSubtitle,
+  ComputerChoice,
 } from './components';
 import { GameChoice } from './interfaces';
 import triangle from '../public/bg-triangle.svg';
@@ -58,6 +59,7 @@ const App = () => {
           <PaperButton {...ButtonCommonProps} onClick={() => onGameChoiceClick('paper')} />
           <ScissorsButton {...ButtonCommonProps} onClick={() => onGameChoiceClick('scissors')} />
           <RockButton {...ButtonCommonProps} onClick={() => onGameChoiceClick('rock')} />
+          <ComputerChoice {...ButtonCommonProps} />
           <img
             src={triangle}
             alt="triangle"
