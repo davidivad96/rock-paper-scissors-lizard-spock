@@ -19,6 +19,7 @@ const YouPickedSubtitle: React.FunctionComponent<Props> = ({ show, translate }) 
         transition: 'opacity 0.5s, transform 0.5s',
         transform: `translate3d(${translate ? '-210px' : '-170px'}, -200px, 0)`,
         opacity: show ? 1 : 0,
+        visibility: show ? 'visible' : 'hidden',
         [theme.breakpoints.down('tablet')]: {
           transform: 'translate3d(-110px, -180px, 0)',
           width: '120px',
@@ -44,6 +45,7 @@ const TheHousePickedSubtitle: React.FunctionComponent<Props> = ({ show, translat
         transition: 'opacity 0.5s, transform 0.5s',
         transform: `translate3d(${translate ? '210px' : '170px'}, -200px, 0)`,
         opacity: show ? 1 : 0,
+        visibility: show ? 'visible' : 'hidden',
         [theme.breakpoints.down('tablet')]: {
           transform: 'translate3d(110px, -180px, 0)',
           width: '120px',

@@ -1,3 +1,3 @@
 export type GameChoice = 'rock' | 'paper' | 'scissors' | '';
 
-export type GameResult = 'win' | 'lose' | 'draw' | '';
+export type GameResult = 'win' | 'lose' | 'tie' | '';

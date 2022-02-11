@@ -4,6 +4,7 @@ import RulesButton from './RulesButton';
 import { PaperButton, ScissorsButton, RockButton } from './GameButtons';
 import ComputerChoice from './ComputerChoice';
 import { YouPickedSubtitle, TheHousePickedSubtitle } from './Subtitles';
+import Result from './Result';
 
 export {
   Header,
@@ -15,4 +16,5 @@ export {
   ComputerChoice,
   YouPickedSubtitle,
   TheHousePickedSubtitle,
+  Result,
 };

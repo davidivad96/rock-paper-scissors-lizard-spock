@@ -1,5 +1,6 @@
 import { useCallback, useState, useMemo, useEffect } from 'react';
-import { Box, BoxProps, Button, Container, styled, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { Box, BoxProps, Container, styled, useMediaQuery, useTheme } from '@mui/material';
+import Lottie from 'react-lottie';
 import {
   Header,
   RulesModal,
@@ -10,10 +11,12 @@ import {
   YouPickedSubtitle,
   TheHousePickedSubtitle,
   ComputerChoice,
+  Result,
 } from './components';
 import { GameChoice, GameResult } from './interfaces';
 import triangle from '../public/bg-triangle.svg';
 import { calculateResult } from './utils';
+import confettiAnimation from '../public/lottie/62717-confetti.json';
 
 const Root = styled(Box)<BoxProps>({
   backgroundImage: 'radial-gradient(circle at top, hsl(214, 47%, 23%), hsl(237, 49%, 15%))',
@@ -68,42 +71,36 @@ const App = () => {
         sx={{ display: 'flex', flexDirection: 'column', flex: 1, alignItems: 'center', marginBottom: '25px' }}
       >
         <Header />
-        <Box display="flex" flex={1} flexDirection="column" justifyContent="center" alignItems="center">
+        <Box
+          display="flex"
+          flex={1}
+          flexDirection="column"
+          justifyContent="center"
+          alignItems="center"
+          sx={{
+            transition: 'filter 0.5s',
+            filter: `${result === 'lose' ? 'grayscale(100%)' : ''}`,
+          }}
+        >
           <YouPickedSubtitle show={playerChoice !== ''} translate={computerChoice !== ''} />
           <TheHousePickedSubtitle show={playerChoice !== ''} translate={computerChoice !== ''} />
           <PaperButton {...ButtonCommonProps} onClick={() => onGameChoiceClick('paper')} />
           <ScissorsButton {...ButtonCommonProps} onClick={() => onGameChoiceClick('scissors')} />
           <RockButton {...ButtonCommonProps} onClick={() => onGameChoiceClick('rock')} />
           <ComputerChoice {...ButtonCommonProps} setComputerChoice={setComputerChoice} />
-          <Box
-            display="flex"
-            flexDirection="column"
-            justifyContent="center"
-            alignItems="center"
-            sx={{
-              transform: `translateY(${isSmallDevice ? '250px' : '80px'})`,
-              transition: `${result === '' ? '' : 'opacity 0.5s'}`,
-              opacity: result === '' ? 0 : 1,
-              zIndex: 100,
-            }}
-          >
-            <Typography variant="h4" fontWeight="bold">
-              {result === 'win' ? 'YOU WIN' : result === 'lose' ? 'YOU LOSE' : 'DRAW'}
-            </Typography>
-            <Button
-              sx={{
-                backgroundColor: '#FFF',
-                borderRadius: '6px',
-                padding: '0.4rem 2rem',
-                ':hover': {
-                  backgroundColor: 'rgba(255, 255, 255, 0.7)',
-                },
+          <Result isSmallDevice={isSmallDevice} result={result} resetGame={resetGame} />
+          {result === 'win' && (
+            <Lottie
+              options={{
+                loop: true,
+                autoplay: true,
+                animationData: confettiAnimation,
               }}
-              onClick={resetGame}
-            >
-              PLAY AGAIN
-            </Button>
-          </Box>
+              height={400}
+              width={400}
+              style={{ position: 'absolute' }}
+            />
+          )}
           <img
             src={triangle}
             alt="triangle"

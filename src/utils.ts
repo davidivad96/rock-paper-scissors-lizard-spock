@@ -2,7 +2,7 @@ import { GameChoice, GameResult } from './interfaces';
 
 export const calculateResult = (player: GameChoice, computer: GameChoice): GameResult => {
   if (player === computer) {
-    return 'draw';
+    return 'tie';
   }
   if (player === 'paper') {
     return computer === 'rock' ? 'win' : 'lose';
