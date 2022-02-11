@@ -34,7 +34,9 @@ const App = () => {
   const [playerChoice, setPlayerChoice] = useState<GameChoice>('');
   const [computerChoice, setComputerChoice] = useState<GameChoice>('');
   const [result, setResult] = useState<GameResult>('');
-  const [score, setScore] = useState<number>(0);
+  const [score, setScore] = useState<number>(
+    localStorage.getItem('score') ? parseInt(localStorage.getItem('score') || '0', 10) : 0,
+  );
 
   const openModal = useCallback(() => {
     setIsModalOpened(true);
@@ -67,7 +69,11 @@ const App = () => {
 
   useEffect(() => {
     if (result !== '') {
-      setScore((score) => (result === 'win' ? score + 1 : result === 'lose' ? Math.max(score - 1, 0) : score));
+      setScore((score) => {
+        const newScore = result === 'win' ? score + 1 : result === 'lose' ? Math.max(score - 1, 0) : score;
+        localStorage.setItem('score', String(newScore));
+        return newScore;
+      });
     }
   }, [result]);
 
