@@ -44,7 +44,10 @@ const App = () => {
     setPlayerChoice(choice);
   }, []);
 
-  const ButtonCommonProps = useMemo(() => ({ isSmallDevice, playerChoice }), [isSmallDevice, playerChoice]);
+  const ButtonCommonProps = useMemo(
+    () => ({ isSmallDevice, playerChoice, computerChoice }),
+    [computerChoice, isSmallDevice, playerChoice],
+  );
 
   const resetGame = useCallback(() => {
     setPlayerChoice('');
@@ -66,16 +69,12 @@ const App = () => {
       >
         <Header />
         <Box display="flex" flex={1} flexDirection="column" justifyContent="center" alignItems="center">
-          <YouPickedSubtitle show={playerChoice !== ''} />
-          <TheHousePickedSubtitle show={playerChoice !== ''} />
+          <YouPickedSubtitle show={playerChoice !== ''} computerChoice={computerChoice} />
+          <TheHousePickedSubtitle show={playerChoice !== ''} computerChoice={computerChoice} />
           <PaperButton {...ButtonCommonProps} onClick={() => onGameChoiceClick('paper')} />
           <ScissorsButton {...ButtonCommonProps} onClick={() => onGameChoiceClick('scissors')} />
           <RockButton {...ButtonCommonProps} onClick={() => onGameChoiceClick('rock')} />
-          <ComputerChoice
-            {...ButtonCommonProps}
-            computerChoice={computerChoice}
-            setComputerChoice={setComputerChoice}
-          />
+          <ComputerChoice {...ButtonCommonProps} setComputerChoice={setComputerChoice} />
           <Box
             display="flex"
             flexDirection="column"

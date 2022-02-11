@@ -61,10 +61,12 @@ const ComputerChoice: React.FunctionComponent<Props> = ({
   return (
     <OptionButton
       sx={{
-        transition: 'opacity 0.5s',
+        transition: 'opacity 0.5s, transform 0.5s',
         opacity: playerChoice === '' ? 0 : 1,
         visibility: playerChoice === '' ? 'hidden' : 'visible',
-        transform: `translate3d(${isSmallDevice ? '110px' : '170px'}, -50px, 0) scale(1.3)`,
+        transform: `translate3d(${
+          isSmallDevice ? '110px' : computerChoice !== '' ? '210px' : '170px'
+        }, -50px, 0) scale(1.3)`,
         cursor: 'default',
         border: `${computerChoice !== '' ? styles[computerChoice].border : 'none'}`,
         boxShadow: `${computerChoice !== '' ? styles[computerChoice].boxShadow : 'none'}`,

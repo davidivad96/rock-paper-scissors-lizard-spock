@@ -26,17 +26,20 @@ export const OptionButton = styled(Paper)<PaperProps>(({ theme }) => ({
 interface Props {
   isSmallDevice: boolean;
   playerChoice: GameChoice;
+  computerChoice: GameChoice;
   onClick: () => void;
 }
 
-const PaperButton: React.FunctionComponent<Props> = ({ isSmallDevice, playerChoice, onClick }) => {
+const PaperButton: React.FunctionComponent<Props> = ({ isSmallDevice, playerChoice, computerChoice, onClick }) => {
   const transform = 'translate3d(-110px, -120px, 0)';
   const sx = useMemo(
     () =>
       playerChoice === 'paper'
         ? {
             transition: 'transform 0.5s',
-            transform: `translate3d(${isSmallDevice ? '-110px' : '-170px'}, -50px, 0) scale(1.3)`,
+            transform: `translate3d(${
+              isSmallDevice ? '-110px' : computerChoice !== '' ? '-210px' : '-170px'
+            }, -50px, 0) scale(1.3)`,
           }
         : playerChoice !== ''
         ? {
@@ -51,7 +54,7 @@ const PaperButton: React.FunctionComponent<Props> = ({ isSmallDevice, playerChoi
               transform: `${transform} scale(1.2)`,
             },
           },
-    [playerChoice, isSmallDevice],
+    [playerChoice, isSmallDevice, computerChoice],
   );
 
   return (
@@ -68,14 +71,16 @@ const PaperButton: React.FunctionComponent<Props> = ({ isSmallDevice, playerChoi
   );
 };
 
-const ScissorsButton: React.FunctionComponent<Props> = ({ isSmallDevice, playerChoice, onClick }) => {
+const ScissorsButton: React.FunctionComponent<Props> = ({ isSmallDevice, playerChoice, computerChoice, onClick }) => {
   const transform = 'translate3d(110px, -120px, 0)';
   const sx = useMemo(
     () =>
       playerChoice === 'scissors'
         ? {
             transition: 'transform 0.5s',
-            transform: `translate3d(${isSmallDevice ? '-110px' : '-170px'}, -50px, 0) scale(1.3)`,
+            transform: `translate3d(${
+              isSmallDevice ? '-110px' : computerChoice !== '' ? '-210px' : '-170px'
+            }, -50px, 0) scale(1.3)`,
           }
         : playerChoice !== ''
         ? {
@@ -90,7 +95,7 @@ const ScissorsButton: React.FunctionComponent<Props> = ({ isSmallDevice, playerC
               transform: `${transform} scale(1.2)`,
             },
           },
-    [playerChoice, isSmallDevice],
+    [playerChoice, isSmallDevice, computerChoice],
   );
 
   return (
@@ -107,14 +112,16 @@ const ScissorsButton: React.FunctionComponent<Props> = ({ isSmallDevice, playerC
   );
 };
 
-const RockButton: React.FunctionComponent<Props> = ({ isSmallDevice, playerChoice, onClick }) => {
+const RockButton: React.FunctionComponent<Props> = ({ isSmallDevice, playerChoice, computerChoice, onClick }) => {
   const transform = 'translate3d(0, 80px, 0)';
   const sx = useMemo(
     () =>
       playerChoice === 'rock'
         ? {
             transition: 'transform 0.5s',
-            transform: `translate3d(${isSmallDevice ? '-110px' : '-170px'}, -50px, 0) scale(1.3)`,
+            transform: `translate3d(${
+              isSmallDevice ? '-110px' : computerChoice !== '' ? '-210px' : '-170px'
+            }, -50px, 0) scale(1.3)`,
           }
         : playerChoice !== ''
         ? {
@@ -129,7 +136,7 @@ const RockButton: React.FunctionComponent<Props> = ({ isSmallDevice, playerChoic
               transform: `${transform} scale(1.2)`,
             },
           },
-    [playerChoice, isSmallDevice],
+    [playerChoice, isSmallDevice, computerChoice],
   );
 
   return (

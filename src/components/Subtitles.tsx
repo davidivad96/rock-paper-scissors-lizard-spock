@@ -1,10 +1,12 @@
 import { Typography, useTheme } from '@mui/material';
+import { GameChoice } from '../interfaces';
 
 interface Props {
   show: boolean;
+  computerChoice: GameChoice;
 }
 
-const YouPickedSubtitle: React.FunctionComponent<Props> = ({ show }) => {
+const YouPickedSubtitle: React.FunctionComponent<Props> = ({ show, computerChoice }) => {
   const theme = useTheme();
 
   return (
@@ -15,8 +17,8 @@ const YouPickedSubtitle: React.FunctionComponent<Props> = ({ show }) => {
       textAlign="center"
       sx={{
         letterSpacing: 3,
-        transform: 'translate3d(-170px, -200px, 0)',
-        transition: 'opacity 0.5s',
+        transition: 'opacity 0.5s, transform 0.5s',
+        transform: `translate3d(${computerChoice !== '' ? '-210px' : '-170px'}, -200px, 0)`,
         opacity: show ? 1 : 0,
         [theme.breakpoints.down('tablet')]: {
           transform: 'translate3d(-110px, -180px, 0)',
@@ -29,7 +31,7 @@ const YouPickedSubtitle: React.FunctionComponent<Props> = ({ show }) => {
   );
 };
 
-const TheHousePickedSubtitle: React.FunctionComponent<Props> = ({ show }) => {
+const TheHousePickedSubtitle: React.FunctionComponent<Props> = ({ show, computerChoice }) => {
   const theme = useTheme();
 
   return (
@@ -40,8 +42,8 @@ const TheHousePickedSubtitle: React.FunctionComponent<Props> = ({ show }) => {
       textAlign="center"
       sx={{
         letterSpacing: 3,
-        transform: 'translate3d(170px, -200px, 0)',
-        transition: 'opacity 0.5s',
+        transition: 'opacity 0.5s, transform 0.5s',
+        transform: `translate3d(${computerChoice !== '' ? '210px' : '170px'}, -200px, 0)`,
         opacity: show ? 1 : 0,
         [theme.breakpoints.down('tablet')]: {
           transform: 'translate3d(110px, -180px, 0)',
