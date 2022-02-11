@@ -34,6 +34,7 @@ const App = () => {
   const [playerChoice, setPlayerChoice] = useState<GameChoice>('');
   const [computerChoice, setComputerChoice] = useState<GameChoice>('');
   const [result, setResult] = useState<GameResult>('');
+  const [score, setScore] = useState<number>(0);
 
   const openModal = useCallback(() => {
     setIsModalOpened(true);
@@ -64,13 +65,19 @@ const App = () => {
     }
   }, [computerChoice, playerChoice]);
 
+  useEffect(() => {
+    if (result !== '') {
+      setScore((score) => (result === 'win' ? score + 1 : result === 'lose' ? Math.max(score - 1, 0) : score));
+    }
+  }, [result]);
+
   return (
     <Root>
       <Container
         maxWidth="desktop"
         sx={{ display: 'flex', flexDirection: 'column', flex: 1, alignItems: 'center', marginBottom: '25px' }}
       >
-        <Header />
+        <Header score={score} />
         <Box
           display="flex"
           flex={1}

@@ -1,7 +1,11 @@
 import { Box, Paper, Typography, useMediaQuery, useTheme } from '@mui/material';
 import logo from '../../public/logo.svg';
 
-const Header: React.FunctionComponent = () => {
+interface Props {
+  score: number;
+}
+
+const Header: React.FunctionComponent<Props> = ({ score }) => {
   const theme = useTheme();
   const isSmallDevice = useMediaQuery(theme.breakpoints.down('tablet'));
 
@@ -27,7 +31,7 @@ const Header: React.FunctionComponent = () => {
           SCORE
         </Typography>
         <Typography variant="h3" color="hsl(229, 25%, 31%)" fontWeight="bold">
-          12
+          {score}
         </Typography>
       </Paper>
     </Box>
