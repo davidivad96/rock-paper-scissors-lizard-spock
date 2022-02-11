@@ -69,8 +69,8 @@ const App = () => {
       >
         <Header />
         <Box display="flex" flex={1} flexDirection="column" justifyContent="center" alignItems="center">
-          <YouPickedSubtitle show={playerChoice !== ''} computerChoice={computerChoice} />
-          <TheHousePickedSubtitle show={playerChoice !== ''} computerChoice={computerChoice} />
+          <YouPickedSubtitle show={playerChoice !== ''} translate={computerChoice !== ''} />
+          <TheHousePickedSubtitle show={playerChoice !== ''} translate={computerChoice !== ''} />
           <PaperButton {...ButtonCommonProps} onClick={() => onGameChoiceClick('paper')} />
           <ScissorsButton {...ButtonCommonProps} onClick={() => onGameChoiceClick('scissors')} />
           <RockButton {...ButtonCommonProps} onClick={() => onGameChoiceClick('rock')} />
@@ -81,8 +81,8 @@ const App = () => {
             justifyContent="center"
             alignItems="center"
             sx={{
-              transform: 'translateY(80px)',
-              transition: 'opacity 0.5s',
+              transform: `translateY(${isSmallDevice ? '250px' : '80px'})`,
+              transition: `${result === '' ? '' : 'opacity 0.5s'}`,
               opacity: result === '' ? 0 : 1,
               zIndex: 100,
             }}

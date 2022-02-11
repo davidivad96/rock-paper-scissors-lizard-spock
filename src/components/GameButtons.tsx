@@ -16,9 +16,9 @@ export const OptionButton = styled(Paper)<PaperProps>(({ theme }) => ({
   zIndex: 100,
   cursor: 'pointer',
   [theme.breakpoints.down('tablet')]: {
-    width: '120px',
-    height: '120px',
-    lineHeight: '140px',
+    width: '135px',
+    height: '135px',
+    lineHeight: '160px',
     borderWidth: '10px',
   },
 }));
@@ -31,7 +31,7 @@ interface Props {
 }
 
 const PaperButton: React.FunctionComponent<Props> = ({ isSmallDevice, playerChoice, computerChoice, onClick }) => {
-  const transform = 'translate3d(-110px, -120px, 0)';
+  const transform = 'translate3d(-110px, -90px, 0)';
   const sx = useMemo(
     () =>
       playerChoice === 'paper'
@@ -66,13 +66,13 @@ const PaperButton: React.FunctionComponent<Props> = ({ isSmallDevice, playerChoi
       }}
       onClick={onClick}
     >
-      <img src={paper} alt="paper" width={isSmallDevice ? '45px' : '65px'} />
+      <img src={paper} alt="paper" width={isSmallDevice ? '50px' : '65px'} />
     </OptionButton>
   );
 };
 
 const ScissorsButton: React.FunctionComponent<Props> = ({ isSmallDevice, playerChoice, computerChoice, onClick }) => {
-  const transform = 'translate3d(110px, -120px, 0)';
+  const transform = 'translate3d(110px, -90px, 0)';
   const sx = useMemo(
     () =>
       playerChoice === 'scissors'
@@ -107,13 +107,13 @@ const ScissorsButton: React.FunctionComponent<Props> = ({ isSmallDevice, playerC
       }}
       onClick={onClick}
     >
-      <img src={scissors} alt="scissors" width={isSmallDevice ? '45px' : '65px'} />
+      <img src={scissors} alt="scissors" width={isSmallDevice ? '50px' : '65px'} />
     </OptionButton>
   );
 };
 
 const RockButton: React.FunctionComponent<Props> = ({ isSmallDevice, playerChoice, computerChoice, onClick }) => {
-  const transform = 'translate3d(0, 80px, 0)';
+  const transform = 'translate3d(0, 110px, 0)';
   const sx = useMemo(
     () =>
       playerChoice === 'rock'
@@ -148,7 +148,7 @@ const RockButton: React.FunctionComponent<Props> = ({ isSmallDevice, playerChoic
       }}
       onClick={onClick}
     >
-      <img src={rock} alt="rock" width={isSmallDevice ? '45px' : '65px'} />
+      <img src={rock} alt="rock" width={isSmallDevice ? '50px' : '65px'} />
     </OptionButton>
   );
 };
