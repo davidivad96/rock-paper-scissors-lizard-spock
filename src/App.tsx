@@ -1,6 +1,15 @@
 import { useCallback, useState, useMemo } from 'react';
 import { Box, BoxProps, Container, styled, useMediaQuery, useTheme } from '@mui/material';
-import { Header, RulesModal, RulesButton, PaperButton, RockButton, ScissorsButton } from './components';
+import {
+  Header,
+  RulesModal,
+  RulesButton,
+  PaperButton,
+  RockButton,
+  ScissorsButton,
+  YouPickedSubtitle,
+  TheHousePickedSubtitle,
+} from './components';
 import { GameChoice } from './interfaces';
 import triangle from '../public/bg-triangle.svg';
 
@@ -44,6 +53,8 @@ const App = () => {
       >
         <Header />
         <Box display="flex" flex={1} flexDirection="column" justifyContent="center" alignItems="center">
+          <YouPickedSubtitle show={selectedButton !== ''} />
+          <TheHousePickedSubtitle show={selectedButton !== ''} />
           <PaperButton {...ButtonCommonProps} onClick={() => onGameChoiceClick('paper')} />
           <ScissorsButton {...ButtonCommonProps} onClick={() => onGameChoiceClick('scissors')} />
           <RockButton {...ButtonCommonProps} onClick={() => onGameChoiceClick('rock')} />

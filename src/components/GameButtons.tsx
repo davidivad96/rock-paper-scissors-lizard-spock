@@ -30,6 +30,7 @@ interface Props {
 }
 
 const PaperButton: React.FunctionComponent<Props> = ({ isSmallDevice, gameChoice, onClick }) => {
+  const transform = 'translate3d(-110px, -120px, 0)';
   const sx = useMemo(
     () =>
       gameChoice === 'paper'
@@ -39,15 +40,15 @@ const PaperButton: React.FunctionComponent<Props> = ({ isSmallDevice, gameChoice
           }
         : gameChoice !== ''
         ? {
-            transform: 'translate3d(-110px, -120px, 0)',
+            transform,
             transition: 'opacity 0.5s',
             opacity: 0,
           }
         : {
-            transform: 'translate3d(-110px, -120px, 0)',
+            transform,
             ':hover': {
               transition: 'transform 1s',
-              transform: 'translate3d(-110px, -120px, 0) scale(1.2)',
+              transform: `${transform} scale(1.2)`,
             },
           },
     [gameChoice, isSmallDevice],
@@ -68,6 +69,7 @@ const PaperButton: React.FunctionComponent<Props> = ({ isSmallDevice, gameChoice
 };
 
 const ScissorsButton: React.FunctionComponent<Props> = ({ isSmallDevice, gameChoice, onClick }) => {
+  const transform = 'translate3d(110px, -120px, 0)';
   const sx = useMemo(
     () =>
       gameChoice === 'scissors'
@@ -77,15 +79,15 @@ const ScissorsButton: React.FunctionComponent<Props> = ({ isSmallDevice, gameCho
           }
         : gameChoice !== ''
         ? {
-            transform: 'translate3d(110px, -120px, 0)',
+            transform,
             transition: 'opacity 0.5s',
             opacity: 0,
           }
         : {
-            transform: 'translate3d(110px, -120px, 0)',
+            transform,
             ':hover': {
               transition: 'transform 1s',
-              transform: 'translate3d(110px, -120px, 0) scale(1.2)',
+              transform: `${transform} scale(1.2)`,
             },
           },
     [gameChoice, isSmallDevice],
@@ -106,6 +108,7 @@ const ScissorsButton: React.FunctionComponent<Props> = ({ isSmallDevice, gameCho
 };
 
 const RockButton: React.FunctionComponent<Props> = ({ isSmallDevice, gameChoice, onClick }) => {
+  const transform = 'translate3d(0, 80px, 0)';
   const sx = useMemo(
     () =>
       gameChoice === 'rock'
@@ -115,15 +118,15 @@ const RockButton: React.FunctionComponent<Props> = ({ isSmallDevice, gameChoice,
           }
         : gameChoice !== ''
         ? {
-            transform: 'translate3d(0, 80px, 0)',
+            transform,
             transition: 'opacity 0.5s',
             opacity: 0,
           }
         : {
-            transform: 'translate3d(0, 80px, 0)',
+            transform,
             ':hover': {
               transition: 'transform 1s',
-              transform: 'translate3d(0, 80px, 0) scale(1.2)',
+              transform: `${transform} scale(1.2)`,
             },
           },
     [gameChoice, isSmallDevice],
