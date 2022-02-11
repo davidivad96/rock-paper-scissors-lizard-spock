@@ -1,33 +1,28 @@
 import { useCallback, useState } from 'react';
-import { Box, BoxProps, Button, ButtonProps, Container, Stack, styled, useMediaQuery, useTheme } from '@mui/material';
-import LineTo from 'react-lineto';
+import { Box, BoxProps, Button, ButtonProps, Container, styled, useMediaQuery, useTheme } from '@mui/material';
 import { Header, PaperButton, RockButton, ScissorsButton } from './components';
 import RulesModal from './components/RulesModal';
+import triangle from '../public/bg-triangle.svg';
 
 const Root = styled(Box)<BoxProps>({
   backgroundImage: 'radial-gradient(circle at top, hsl(214, 47%, 23%), hsl(237, 49%, 15%))',
   height: '100vh',
   display: 'flex',
   flexDirection: 'column',
+  alignItems: 'center',
+  padding: '15px',
 });
 
 const RulesButton = styled(Button)<ButtonProps>(({ theme }) => ({
   border: '2px solid hsl(217, 16%, 45%)',
   borderRadius: '6px',
   color: '#FFF',
-  padding: '0.2rem 1.75rem',
+  padding: '0.4rem 2rem',
   alignSelf: 'flex-end',
   [theme.breakpoints.down('tablet')]: {
     alignSelf: 'center',
   },
 }));
-
-const LineToProps = {
-  zIndex: 10,
-  delay: 0,
-  borderWidth: 14,
-  borderColor: 'rgba(0, 0, 0, 0.3)',
-};
 
 const App = () => {
   const theme = useTheme();
@@ -46,26 +41,17 @@ const App = () => {
     <Root>
       <Container
         maxWidth="desktop"
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          flex: 1,
-          justifyContent: 'space-around',
-          alignItems: 'center',
-          paddingX: '3rem',
-        }}
+        sx={{ display: 'flex', flexDirection: 'column', flex: 1, alignItems: 'center', marginBottom: '25px' }}
       >
         <Header />
-        <Stack direction="row" justifyContent="space-between" spacing="5rem">
-          <PaperButton isSmallDevice={isSmallDevice} className="A" />
-          <ScissorsButton isSmallDevice={isSmallDevice} className="B" />
-        </Stack>
-        <RockButton isSmallDevice={isSmallDevice} className="C" />
-        <RulesButton onClick={openModal}>RULES</RulesButton>
+        <Box display="flex" flex={1} flexDirection="column" justifyContent="center" alignItems="center">
+          <PaperButton isSmallDevice={isSmallDevice} />
+          <ScissorsButton isSmallDevice={isSmallDevice} />
+          <RockButton isSmallDevice={isSmallDevice} />
+          <img src={triangle} alt="triangle" />
+        </Box>
       </Container>
-      <LineTo from="A" to="B" {...LineToProps} />
-      <LineTo from="A" to="C" {...LineToProps} />
-      <LineTo from="B" to="C" {...LineToProps} />
+      <RulesButton onClick={openModal}>RULES</RulesButton>
       <RulesModal isOpened={isModalOpened} onClose={closeModal} isSmallDevice={isSmallDevice} />
     </Root>
   );

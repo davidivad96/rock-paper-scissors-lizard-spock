@@ -14,6 +14,7 @@ const Header: React.FunctionComponent = () => {
       justifyContent="space-between"
       alignItems="center"
       p={2}
+      mb={10}
       border="2px solid hsl(217, 16%, 45%)"
       borderRadius="10px"
     >
