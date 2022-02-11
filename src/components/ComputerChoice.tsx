@@ -29,15 +29,21 @@ const styles = {
 
 interface Props {
   isSmallDevice: boolean;
-  gameChoice: GameChoice;
+  playerChoice: GameChoice;
+  computerChoice: GameChoice;
+  setComputerChoice: (choice: GameChoice) => void;
 }
 
-const ComputerChoice: React.FunctionComponent<Props> = ({ isSmallDevice, gameChoice }) => {
+const ComputerChoice: React.FunctionComponent<Props> = ({
+  isSmallDevice,
+  playerChoice,
+  computerChoice,
+  setComputerChoice,
+}) => {
   const [time, setTime] = useState<number>(3);
-  const [computerChoice, setComputerChoice] = useState<GameChoice>('');
 
   useEffect(() => {
-    if (gameChoice !== '') {
+    if (playerChoice !== '') {
       setTime(3);
       const timer = setInterval(() => {
         setTime((time) => {
@@ -50,14 +56,14 @@ const ComputerChoice: React.FunctionComponent<Props> = ({ isSmallDevice, gameCho
       }, 700);
       return () => clearInterval(timer);
     }
-  }, [gameChoice]);
+  }, [playerChoice, setComputerChoice]);
 
   return (
     <OptionButton
       sx={{
         transition: 'opacity 0.5s',
-        opacity: gameChoice === '' ? 0 : 1,
-        visibility: gameChoice === '' ? 'hidden' : 'visible',
+        opacity: playerChoice === '' ? 0 : 1,
+        visibility: playerChoice === '' ? 'hidden' : 'visible',
         transform: `translate3d(${isSmallDevice ? '110px' : '170px'}, -50px, 0) scale(1.3)`,
         cursor: 'default',
         border: `${computerChoice !== '' ? styles[computerChoice].border : 'none'}`,

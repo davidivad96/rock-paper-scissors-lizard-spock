@@ -1,5 +1,5 @@
-import { useCallback, useState, useMemo } from 'react';
-import { Box, BoxProps, Container, styled, useMediaQuery, useTheme } from '@mui/material';
+import { useCallback, useState, useMemo, useEffect } from 'react';
+import { Box, BoxProps, Button, Container, styled, Typography, useMediaQuery, useTheme } from '@mui/material';
 import {
   Header,
   RulesModal,
@@ -11,8 +11,9 @@ import {
   TheHousePickedSubtitle,
   ComputerChoice,
 } from './components';
-import { GameChoice } from './interfaces';
+import { GameChoice, GameResult } from './interfaces';
 import triangle from '../public/bg-triangle.svg';
+import { calculateResult } from './utils';
 
 const Root = styled(Box)<BoxProps>({
   backgroundImage: 'radial-gradient(circle at top, hsl(214, 47%, 23%), hsl(237, 49%, 15%))',
@@ -27,7 +28,9 @@ const App = () => {
   const theme = useTheme();
   const isSmallDevice = useMediaQuery(theme.breakpoints.down('tablet'));
   const [isModalOpened, setIsModalOpened] = useState<boolean>(false);
-  const [selectedButton, setSelectedButton] = useState<GameChoice>('');
+  const [playerChoice, setPlayerChoice] = useState<GameChoice>('');
+  const [computerChoice, setComputerChoice] = useState<GameChoice>('');
+  const [result, setResult] = useState<GameResult>('');
 
   const openModal = useCallback(() => {
     setIsModalOpened(true);
@@ -38,13 +41,22 @@ const App = () => {
   }, []);
 
   const onGameChoiceClick = useCallback((choice: GameChoice) => {
-    setSelectedButton(choice);
+    setPlayerChoice(choice);
   }, []);
 
-  const ButtonCommonProps = useMemo(
-    () => ({ isSmallDevice, gameChoice: selectedButton }),
-    [isSmallDevice, selectedButton],
-  );
+  const ButtonCommonProps = useMemo(() => ({ isSmallDevice, playerChoice }), [isSmallDevice, playerChoice]);
+
+  const resetGame = useCallback(() => {
+    setPlayerChoice('');
+    setComputerChoice('');
+    setResult('');
+  }, []);
+
+  useEffect(() => {
+    if (computerChoice !== '') {
+      setResult(calculateResult(playerChoice, computerChoice));
+    }
+  }, [computerChoice, playerChoice]);
 
   return (
     <Root>
@@ -54,18 +66,51 @@ const App = () => {
       >
         <Header />
         <Box display="flex" flex={1} flexDirection="column" justifyContent="center" alignItems="center">
-          <YouPickedSubtitle show={selectedButton !== ''} />
-          <TheHousePickedSubtitle show={selectedButton !== ''} />
+          <YouPickedSubtitle show={playerChoice !== ''} />
+          <TheHousePickedSubtitle show={playerChoice !== ''} />
           <PaperButton {...ButtonCommonProps} onClick={() => onGameChoiceClick('paper')} />
           <ScissorsButton {...ButtonCommonProps} onClick={() => onGameChoiceClick('scissors')} />
           <RockButton {...ButtonCommonProps} onClick={() => onGameChoiceClick('rock')} />
-          <ComputerChoice {...ButtonCommonProps} />
+          <ComputerChoice
+            {...ButtonCommonProps}
+            computerChoice={computerChoice}
+            setComputerChoice={setComputerChoice}
+          />
+          <Box
+            display="flex"
+            flexDirection="column"
+            justifyContent="center"
+            alignItems="center"
+            sx={{
+              transform: 'translateY(80px)',
+              transition: 'opacity 0.5s',
+              opacity: result === '' ? 0 : 1,
+              zIndex: 100,
+            }}
+          >
+            <Typography variant="h4" fontWeight="bold">
+              {result === 'win' ? 'YOU WIN' : result === 'lose' ? 'YOU LOSE' : 'DRAW'}
+            </Typography>
+            <Button
+              sx={{
+                backgroundColor: '#FFF',
+                borderRadius: '6px',
+                padding: '0.4rem 2rem',
+                ':hover': {
+                  backgroundColor: 'rgba(255, 255, 255, 0.7)',
+                },
+              }}
+              onClick={resetGame}
+            >
+              PLAY AGAIN
+            </Button>
+          </Box>
           <img
             src={triangle}
             alt="triangle"
             style={{
               transition: 'opacity 0.5s',
-              opacity: selectedButton !== '' ? 0 : 1,
+              opacity: playerChoice !== '' ? 0 : 1,
             }}
           />
         </Box>
