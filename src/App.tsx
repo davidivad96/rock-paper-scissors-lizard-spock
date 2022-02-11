@@ -1,7 +1,7 @@
-import { useCallback, useState } from 'react';
-import { Box, BoxProps, Button, ButtonProps, Container, styled, useMediaQuery, useTheme } from '@mui/material';
-import { Header, PaperButton, RockButton, ScissorsButton } from './components';
-import RulesModal from './components/RulesModal';
+import { useCallback, useState, useMemo } from 'react';
+import { Box, BoxProps, Container, styled, useMediaQuery, useTheme } from '@mui/material';
+import { Header, RulesModal, RulesButton, PaperButton, RockButton, ScissorsButton } from './components';
+import { GameChoice } from './interfaces';
 import triangle from '../public/bg-triangle.svg';
 
 const Root = styled(Box)<BoxProps>({
@@ -13,21 +13,11 @@ const Root = styled(Box)<BoxProps>({
   padding: '15px',
 });
 
-const RulesButton = styled(Button)<ButtonProps>(({ theme }) => ({
-  border: '2px solid hsl(217, 16%, 45%)',
-  borderRadius: '6px',
-  color: '#FFF',
-  padding: '0.4rem 2rem',
-  alignSelf: 'flex-end',
-  [theme.breakpoints.down('tablet')]: {
-    alignSelf: 'center',
-  },
-}));
-
 const App = () => {
   const theme = useTheme();
   const isSmallDevice = useMediaQuery(theme.breakpoints.down('tablet'));
   const [isModalOpened, setIsModalOpened] = useState<boolean>(false);
+  const [selectedButton, setSelectedButton] = useState<GameChoice>('');
 
   const openModal = useCallback(() => {
     setIsModalOpened(true);
@@ -37,6 +27,15 @@ const App = () => {
     setIsModalOpened(false);
   }, []);
 
+  const onGameChoiceClick = useCallback((choice: GameChoice) => {
+    setSelectedButton(choice);
+  }, []);
+
+  const ButtonCommonProps = useMemo(
+    () => ({ isSmallDevice, gameChoice: selectedButton }),
+    [isSmallDevice, selectedButton],
+  );
+
   return (
     <Root>
       <Container
@@ -45,10 +44,17 @@ const App = () => {
       >
         <Header />
         <Box display="flex" flex={1} flexDirection="column" justifyContent="center" alignItems="center">
-          <PaperButton isSmallDevice={isSmallDevice} />
-          <ScissorsButton isSmallDevice={isSmallDevice} />
-          <RockButton isSmallDevice={isSmallDevice} />
-          <img src={triangle} alt="triangle" />
+          <PaperButton {...ButtonCommonProps} onClick={() => onGameChoiceClick('paper')} />
+          <ScissorsButton {...ButtonCommonProps} onClick={() => onGameChoiceClick('scissors')} />
+          <RockButton {...ButtonCommonProps} onClick={() => onGameChoiceClick('rock')} />
+          <img
+            src={triangle}
+            alt="triangle"
+            style={{
+              transition: 'opacity 0.5s',
+              opacity: selectedButton !== '' ? 0 : 1,
+            }}
+          />
         </Box>
       </Container>
       <RulesButton onClick={openModal}>RULES</RulesButton>
