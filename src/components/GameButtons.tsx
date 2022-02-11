@@ -3,22 +3,24 @@ import { Paper, PaperProps, styled } from '@mui/material';
 import paper from '../../public/icon-paper.svg';
 import scissors from '../../public/icon-scissors.svg';
 import rock from '../../public/icon-rock.svg';
+import lizard from '../../public/icon-lizard.svg';
+import spock from '../../public/icon-spock.svg';
 import { GameChoice } from '../interfaces';
 
 export const OptionButton = styled(Paper)<PaperProps>(({ theme }) => ({
   position: 'absolute',
-  width: '150px',
-  height: '150px',
-  lineHeight: '180px',
+  width: '130px',
+  height: '130px',
+  lineHeight: '145px',
   textAlign: 'center',
   borderRadius: '50%',
   border: '15px solid',
   zIndex: 100,
   cursor: 'pointer',
   [theme.breakpoints.down('tablet')]: {
-    width: '135px',
-    height: '135px',
-    lineHeight: '160px',
+    width: '100px',
+    height: '100px',
+    lineHeight: '115px',
     borderWidth: '10px',
   },
 }));
@@ -31,7 +33,7 @@ interface Props {
 }
 
 const PaperButton: React.FunctionComponent<Props> = ({ isSmallDevice, playerChoice, computerChoice, onClick }) => {
-  const transform = 'translate3d(-110px, -90px, 0)';
+  const transform = 'translate3d(140px, 0, 0)';
   const sx = useMemo(
     () =>
       playerChoice === 'paper'
@@ -66,13 +68,13 @@ const PaperButton: React.FunctionComponent<Props> = ({ isSmallDevice, playerChoi
       }}
       onClick={onClick}
     >
-      <img src={paper} alt="paper" width={isSmallDevice ? '50px' : '65px'} />
+      <img src={paper} alt="paper" width={isSmallDevice ? '35px' : '50px'} />
     </OptionButton>
   );
 };
 
 const ScissorsButton: React.FunctionComponent<Props> = ({ isSmallDevice, playerChoice, computerChoice, onClick }) => {
-  const transform = 'translate3d(110px, -90px, 0)';
+  const transform = 'translate3d(0, -80px, 0)';
   const sx = useMemo(
     () =>
       playerChoice === 'scissors'
@@ -107,13 +109,13 @@ const ScissorsButton: React.FunctionComponent<Props> = ({ isSmallDevice, playerC
       }}
       onClick={onClick}
     >
-      <img src={scissors} alt="scissors" width={isSmallDevice ? '50px' : '65px'} />
+      <img src={scissors} alt="scissors" width={isSmallDevice ? '35px' : '50px'} />
     </OptionButton>
   );
 };
 
 const RockButton: React.FunctionComponent<Props> = ({ isSmallDevice, playerChoice, computerChoice, onClick }) => {
-  const transform = 'translate3d(0, 110px, 0)';
+  const transform = 'translate3d(80px, 160px, 0)';
   const sx = useMemo(
     () =>
       playerChoice === 'rock'
@@ -148,9 +150,91 @@ const RockButton: React.FunctionComponent<Props> = ({ isSmallDevice, playerChoic
       }}
       onClick={onClick}
     >
-      <img src={rock} alt="rock" width={isSmallDevice ? '50px' : '65px'} />
+      <img src={rock} alt="rock" width={isSmallDevice ? '35px' : '50px'} />
     </OptionButton>
   );
 };
 
-export { PaperButton, ScissorsButton, RockButton };
+const LizardButton: React.FunctionComponent<Props> = ({ isSmallDevice, playerChoice, computerChoice, onClick }) => {
+  const transform = 'translate3d(-80px, 160px, 0)';
+  const sx = useMemo(
+    () =>
+      playerChoice === 'lizard'
+        ? {
+            transition: 'transform 0.5s',
+            transform: `translate3d(${
+              isSmallDevice ? '-110px' : computerChoice !== '' ? '-210px' : '-170px'
+            }, -50px, 0) scale(1.3)`,
+          }
+        : playerChoice !== ''
+        ? {
+            transform,
+            transition: 'opacity 0.5s',
+            opacity: 0,
+          }
+        : {
+            transform,
+            ':hover': {
+              transition: 'transform 1s',
+              transform: `${transform} scale(1.2)`,
+            },
+          },
+    [playerChoice, isSmallDevice, computerChoice],
+  );
+
+  return (
+    <OptionButton
+      sx={{
+        borderColor: 'hsl(261, 72%, 63%)',
+        boxShadow: 'inset 0px 6px rgb(0 0 0 / 20%), 0 6px hsl(261, 73%, 53%)',
+        ...sx,
+      }}
+      onClick={onClick}
+    >
+      <img src={lizard} alt="lizard" width={isSmallDevice ? '35px' : '50px'} />
+    </OptionButton>
+  );
+};
+
+const SpockButton: React.FunctionComponent<Props> = ({ isSmallDevice, playerChoice, computerChoice, onClick }) => {
+  const transform = 'translate3d(-140px, 0, 0)';
+  const sx = useMemo(
+    () =>
+      playerChoice === 'spock'
+        ? {
+            transition: 'transform 0.5s',
+            transform: `translate3d(${
+              isSmallDevice ? '-110px' : computerChoice !== '' ? '-210px' : '-170px'
+            }, -50px, 0) scale(1.3)`,
+          }
+        : playerChoice !== ''
+        ? {
+            transform,
+            transition: 'opacity 0.5s',
+            opacity: 0,
+          }
+        : {
+            transform,
+            ':hover': {
+              transition: 'transform 1s',
+              transform: `${transform} scale(1.2)`,
+            },
+          },
+    [playerChoice, isSmallDevice, computerChoice],
+  );
+
+  return (
+    <OptionButton
+      sx={{
+        borderColor: 'hsl(189, 58%, 57%)',
+        boxShadow: 'inset 0px 6px rgb(0 0 0 / 20%), 0 6px hsl(189, 59%, 47%)',
+        ...sx,
+      }}
+      onClick={onClick}
+    >
+      <img src={spock} alt="spock" width={isSmallDevice ? '35px' : '50px'} />
+    </OptionButton>
+  );
+};
+
+export { PaperButton, ScissorsButton, RockButton, LizardButton, SpockButton };

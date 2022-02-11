@@ -1,6 +1,6 @@
 import { Box, Fade, IconButton, Modal, Stack, Typography } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import rules from '../../public/image-rules.svg';
+import rules from '../../public/image-rules-bonus.svg';
 
 interface Props {
   isSmallDevice: boolean;

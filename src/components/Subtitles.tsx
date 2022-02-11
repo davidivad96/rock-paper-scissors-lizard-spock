@@ -14,6 +14,7 @@ const YouPickedSubtitle: React.FunctionComponent<Props> = ({ show, translate }) 
       fontWeight="bold"
       position="absolute"
       textAlign="center"
+      mt={5}
       sx={{
         letterSpacing: 3,
         transition: 'opacity 0.5s, transform 0.5s',
@@ -40,6 +41,7 @@ const TheHousePickedSubtitle: React.FunctionComponent<Props> = ({ show, translat
       fontWeight="bold"
       position="absolute"
       textAlign="center"
+      mt={5}
       sx={{
         letterSpacing: 3,
         transition: 'opacity 0.5s, transform 0.5s',

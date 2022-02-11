@@ -1,5 +1,5 @@
 import { Box, Paper, Typography, useMediaQuery, useTheme } from '@mui/material';
-import logo from '../../public/logo.svg';
+import logo from '../../public/logo-bonus.svg';
 
 interface Props {
   score: number;
@@ -18,7 +18,6 @@ const Header: React.FunctionComponent<Props> = ({ score }) => {
       justifyContent="space-between"
       alignItems="center"
       p={2}
-      mb={10}
       border="2px solid hsl(217, 16%, 45%)"
       borderRadius="10px"
     >

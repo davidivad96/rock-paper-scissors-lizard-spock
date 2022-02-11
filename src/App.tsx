@@ -6,15 +6,17 @@ import {
   RulesModal,
   RulesButton,
   PaperButton,
-  RockButton,
   ScissorsButton,
+  RockButton,
+  LizardButton,
+  SpockButton,
   YouPickedSubtitle,
   TheHousePickedSubtitle,
   ComputerChoice,
   Result,
 } from './components';
 import { GameChoice, GameResult } from './interfaces';
-import triangle from '../public/bg-triangle.svg';
+import pentagon from '../public/bg-pentagon.svg';
 import { calculateResult } from './utils';
 import confettiAnimation from '../public/lottie/62717-confetti.json';
 
@@ -100,6 +102,8 @@ const App = () => {
           <PaperButton {...ButtonCommonProps} onClick={() => onGameChoiceClick('paper')} />
           <ScissorsButton {...ButtonCommonProps} onClick={() => onGameChoiceClick('scissors')} />
           <RockButton {...ButtonCommonProps} onClick={() => onGameChoiceClick('rock')} />
+          <LizardButton {...ButtonCommonProps} onClick={() => onGameChoiceClick('lizard')} />
+          <SpockButton {...ButtonCommonProps} onClick={() => onGameChoiceClick('spock')} />
           <ComputerChoice {...ButtonCommonProps} setComputerChoice={setComputerChoice} />
           <Result isSmallDevice={isSmallDevice} result={result} resetGame={resetGame} />
           {result === 'win' && (
@@ -115,8 +119,8 @@ const App = () => {
             />
           )}
           <img
-            src={triangle}
-            alt="triangle"
+            src={pentagon}
+            alt="pentagon"
             style={{
               transition: 'opacity 0.5s',
               opacity: playerChoice !== '' ? 0 : 1,

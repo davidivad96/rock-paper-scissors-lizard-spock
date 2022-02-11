@@ -5,11 +5,15 @@ import { OptionButton } from './GameButtons';
 import paper from '../../public/icon-paper.svg';
 import scissors from '../../public/icon-scissors.svg';
 import rock from '../../public/icon-rock.svg';
+import lizard from '../../public/icon-lizard.svg';
+import spock from '../../public/icon-spock.svg';
 
 const images = {
   paper,
   scissors,
   rock,
+  lizard,
+  spock,
 };
 
 const styles = {
@@ -24,6 +28,14 @@ const styles = {
   rock: {
     border: '15px solid hsl(349, 70%, 56%)',
     boxShadow: 'inset 0px 6px rgb(0 0 0 / 20%), 0 6px hsl(349, 71%, 46%)',
+  },
+  lizard: {
+    border: '15px solid hsl(261, 72%, 63%)',
+    boxShadow: 'inset 0px 6px rgb(0 0 0 / 20%), 0 6px hsl(261, 73%, 53%)',
+  },
+  spock: {
+    border: '15px solid hsl(189, 58%, 57%)',
+    boxShadow: 'inset 0px 6px rgb(0 0 0 / 20%), 0 6px hsl(189, 59%, 47%)',
   },
 };
 
@@ -48,7 +60,7 @@ const ComputerChoice: React.FunctionComponent<Props> = ({
       const timer = setInterval(() => {
         setTime((time) => {
           if (time === 1) {
-            const choices: GameChoice[] = ['rock', 'paper', 'scissors'];
+            const choices: GameChoice[] = ['rock', 'paper', 'scissors', 'lizard', 'spock'];
             setComputerChoice(choices[Math.floor(Math.random() * choices.length)]);
           }
           return time - 1;

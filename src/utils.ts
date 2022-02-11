@@ -5,10 +5,16 @@ export const calculateResult = (player: GameChoice, computer: GameChoice): GameR
     return 'tie';
   }
   if (player === 'paper') {
-    return computer === 'rock' ? 'win' : 'lose';
+    return computer === 'rock' || computer === 'spock' ? 'win' : 'lose';
   }
   if (player === 'rock') {
-    return computer === 'paper' ? 'lose' : 'win';
+    return computer === 'scissors' || computer === 'lizard' ? 'win' : 'lose';
   }
-  return computer === 'paper' ? 'win' : 'lose';
+  if (player === 'scissors') {
+    return computer === 'paper' || computer === 'lizard' ? 'win' : 'lose';
+  }
+  if (player === 'lizard') {
+    return computer === 'paper' || computer === 'spock' ? 'win' : 'lose';
+  }
+  return computer === 'scissors' || computer === 'rock' ? 'win' : 'lose';
 };
