@@ -1,5 +1,5 @@
 import { Typography } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { GameChoice } from '../interfaces';
 import { OptionButton } from './GameButtons';
 import paper from '../../public/icon-paper.svg';
@@ -7,6 +7,7 @@ import scissors from '../../public/icon-scissors.svg';
 import rock from '../../public/icon-rock.svg';
 import lizard from '../../public/icon-lizard.svg';
 import spock from '../../public/icon-spock.svg';
+import { colors } from '../utils';
 
 const images = {
   paper,
@@ -18,24 +19,24 @@ const images = {
 
 const styles = {
   paper: {
-    border: '15px solid hsl(230, 89%, 65%)',
-    boxShadow: 'inset 0px 6px rgb(0 0 0 / 20%), 0 6px hsl(230, 89%, 56%)',
+    border: `15px solid ${colors.paper.border}`,
+    boxShadow: `inset 0px 6px rgb(0 0 0 / 20%), 0 6px ${colors.paper.borderShadow}`,
   },
   scissors: {
-    border: '15px solid hsl(40, 84%, 53%)',
-    boxShadow: 'inset 0px 6px rgb(0 0 0 / 20%), 0 6px hsl(39, 89%, 43%)',
+    border: `15px solid ${colors.scissors.border}`,
+    boxShadow: `inset 0px 6px rgb(0 0 0 / 20%), 0 6px ${colors.scissors.borderShadow}`,
   },
   rock: {
-    border: '15px solid hsl(349, 70%, 56%)',
-    boxShadow: 'inset 0px 6px rgb(0 0 0 / 20%), 0 6px hsl(349, 71%, 46%)',
+    border: `15px solid ${colors.rock.border}`,
+    boxShadow: `inset 0px 6px rgb(0 0 0 / 20%), 0 6px ${colors.rock.borderShadow}`,
   },
   lizard: {
-    border: '15px solid hsl(261, 72%, 63%)',
-    boxShadow: 'inset 0px 6px rgb(0 0 0 / 20%), 0 6px hsl(261, 73%, 53%)',
+    border: `15px solid ${colors.lizard.border}`,
+    boxShadow: `inset 0px 6px rgb(0 0 0 / 20%), 0 6px ${colors.lizard.borderShadow}`,
   },
   spock: {
-    border: '15px solid hsl(189, 58%, 57%)',
-    boxShadow: 'inset 0px 6px rgb(0 0 0 / 20%), 0 6px hsl(189, 59%, 47%)',
+    border: `15px solid ${colors.spock.border}`,
+    boxShadow: `inset 0px 6px rgb(0 0 0 / 20%), 0 6px ${colors.spock.borderShadow}`,
   },
 };
 
@@ -70,24 +71,27 @@ const ComputerChoice: React.FunctionComponent<Props> = ({
     }
   }, [playerChoice, setComputerChoice]);
 
+  const sx = useMemo(
+    () => ({
+      transition: 'opacity 0.5s, transform 0.5s',
+      opacity: playerChoice === '' ? 0 : 1,
+      visibility: playerChoice === '' ? 'hidden' : 'visible',
+      transform: `translate3d(${
+        isSmallDevice ? '110px' : computerChoice !== '' ? '210px' : '170px'
+      }, -50px, 0) scale(1.3)`,
+      cursor: 'default',
+      border: `${computerChoice !== '' ? styles[computerChoice].border : 'none'}`,
+      boxShadow: `${computerChoice !== '' ? styles[computerChoice].boxShadow : 'none'}`,
+      backgroundColor: `${computerChoice !== '' ? '#FFF' : 'rgba(0, 0, 0, 0.2)'}`,
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+    }),
+    [computerChoice, isSmallDevice, playerChoice],
+  );
+
   return (
-    <OptionButton
-      sx={{
-        transition: 'opacity 0.5s, transform 0.5s',
-        opacity: playerChoice === '' ? 0 : 1,
-        visibility: playerChoice === '' ? 'hidden' : 'visible',
-        transform: `translate3d(${
-          isSmallDevice ? '110px' : computerChoice !== '' ? '210px' : '170px'
-        }, -50px, 0) scale(1.3)`,
-        cursor: 'default',
-        border: `${computerChoice !== '' ? styles[computerChoice].border : 'none'}`,
-        boxShadow: `${computerChoice !== '' ? styles[computerChoice].boxShadow : 'none'}`,
-        backgroundColor: `${computerChoice !== '' ? '#FFF' : 'rgba(0, 0, 0, 0.2)'}`,
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
+    <OptionButton sx={sx}>
       {computerChoice === '' ? (
         <Typography variant="h3" fontWeight="bold">
           {time}

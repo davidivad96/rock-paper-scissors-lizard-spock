@@ -6,6 +6,7 @@ import rock from '../../public/icon-rock.svg';
 import lizard from '../../public/icon-lizard.svg';
 import spock from '../../public/icon-spock.svg';
 import { GameChoice } from '../interfaces';
+import { colors } from '../utils';
 
 export const OptionButton = styled(Paper)<PaperProps>(({ theme }) => ({
   position: 'absolute',
@@ -62,8 +63,8 @@ const PaperButton: React.FunctionComponent<Props> = ({ isSmallDevice, playerChoi
   return (
     <OptionButton
       sx={{
-        borderColor: 'hsl(230, 89%, 65%)',
-        boxShadow: 'inset 0px 6px rgb(0 0 0 / 20%), 0 6px hsl(230, 89%, 56%)',
+        borderColor: colors.paper.border,
+        boxShadow: `inset 0px 6px rgb(0 0 0 / 20%), 0 6px ${colors.paper.borderShadow}`,
         ...sx,
       }}
       onClick={onClick}
@@ -103,8 +104,8 @@ const ScissorsButton: React.FunctionComponent<Props> = ({ isSmallDevice, playerC
   return (
     <OptionButton
       sx={{
-        borderColor: 'hsl(40, 84%, 53%)',
-        boxShadow: 'inset 0px 6px rgb(0 0 0 / 20%), 0 6px hsl(39, 89%, 43%)',
+        borderColor: colors.scissors.border,
+        boxShadow: `inset 0px 6px rgb(0 0 0 / 20%), 0 6px ${colors.scissors.borderShadow}`,
         ...sx,
       }}
       onClick={onClick}
@@ -144,8 +145,8 @@ const RockButton: React.FunctionComponent<Props> = ({ isSmallDevice, playerChoic
   return (
     <OptionButton
       sx={{
-        borderColor: 'hsl(349, 70%, 56%)',
-        boxShadow: 'inset 0px 6px rgb(0 0 0 / 20%), 0 6px hsl(349, 71%, 46%)',
+        borderColor: colors.rock.border,
+        boxShadow: `inset 0px 6px rgb(0 0 0 / 20%), 0 6px ${colors.rock.borderShadow}`,
         ...sx,
       }}
       onClick={onClick}
@@ -185,8 +186,8 @@ const LizardButton: React.FunctionComponent<Props> = ({ isSmallDevice, playerCho
   return (
     <OptionButton
       sx={{
-        borderColor: 'hsl(261, 72%, 63%)',
-        boxShadow: 'inset 0px 6px rgb(0 0 0 / 20%), 0 6px hsl(261, 73%, 53%)',
+        borderColor: colors.lizard.border,
+        boxShadow: `inset 0px 6px rgb(0 0 0 / 20%), 0 6px ${colors.lizard.borderShadow}`,
         ...sx,
       }}
       onClick={onClick}
@@ -226,8 +227,8 @@ const SpockButton: React.FunctionComponent<Props> = ({ isSmallDevice, playerChoi
   return (
     <OptionButton
       sx={{
-        borderColor: 'hsl(189, 58%, 57%)',
-        boxShadow: 'inset 0px 6px rgb(0 0 0 / 20%), 0 6px hsl(189, 59%, 47%)',
+        borderColor: colors.spock.border,
+        boxShadow: `inset 0px 6px rgb(0 0 0 / 20%), 0 6px ${colors.spock.borderShadow}`,
         ...sx,
       }}
       onClick={onClick}
