@@ -92,6 +92,8 @@ const App = () => {
           flexDirection="column"
           justifyContent="center"
           alignItems="center"
+          position="relative"
+          bottom={50}
           sx={{
             transition: 'filter 0.5s',
             filter: `${result === 'lose' ? 'grayscale(100%)' : ''}`,

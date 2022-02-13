@@ -42,6 +42,7 @@ const TheHousePickedSubtitle: React.FunctionComponent<Props> = ({ show, translat
       position="absolute"
       textAlign="center"
       mt={5}
+      mb={4}
       sx={{
         letterSpacing: 3,
         transition: 'opacity 0.5s, transform 0.5s',
