@@ -15,6 +15,7 @@ const YouPickedSubtitle: React.FunctionComponent<Props> = ({ show, translate }) 
       position="absolute"
       textAlign="center"
       mt={5}
+      mb={4}
       sx={{
         letterSpacing: 3,
         transition: 'opacity 0.5s, transform 0.5s',
