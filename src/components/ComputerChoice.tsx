@@ -97,7 +97,7 @@ const ComputerChoice: React.FunctionComponent<Props> = ({
           {time}
         </Typography>
       ) : (
-        <img src={images[computerChoice]} alt="computer choice" width={isSmallDevice ? '45px' : '65px'} />
+        <img src={images[computerChoice]} alt="computer choice" width={isSmallDevice ? '35px' : '50px'} />
       )}
     </OptionButton>
   );
