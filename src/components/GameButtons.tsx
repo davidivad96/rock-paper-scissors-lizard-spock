@@ -49,6 +49,7 @@ const PaperButton: React.FunctionComponent<Props> = ({ isSmallDevice, playerChoi
             transform,
             transition: 'opacity 0.5s',
             opacity: 0,
+            visibility: 'hidden',
           }
         : {
             transform,
@@ -90,6 +91,7 @@ const ScissorsButton: React.FunctionComponent<Props> = ({ isSmallDevice, playerC
             transform,
             transition: 'opacity 0.5s',
             opacity: 0,
+            visibility: 'hidden',
           }
         : {
             transform,
@@ -131,6 +133,7 @@ const RockButton: React.FunctionComponent<Props> = ({ isSmallDevice, playerChoic
             transform,
             transition: 'opacity 0.5s',
             opacity: 0,
+            visibility: 'hidden',
           }
         : {
             transform,
@@ -172,6 +175,7 @@ const LizardButton: React.FunctionComponent<Props> = ({ isSmallDevice, playerCho
             transform,
             transition: 'opacity 0.5s',
             opacity: 0,
+            visibility: 'hidden',
           }
         : {
             transform,
@@ -213,6 +217,7 @@ const SpockButton: React.FunctionComponent<Props> = ({ isSmallDevice, playerChoi
             transform,
             transition: 'opacity 0.5s',
             opacity: 0,
+            visibility: 'hidden',
           }
         : {
             transform,
