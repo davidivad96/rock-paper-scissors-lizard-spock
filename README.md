@@ -33,8 +33,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://github.com/davidivad96/rock-paper-scissors-lizard-spock)
-- Live Site URL: [Add live site URL here](https://epic-rpsls.netlify.app/)
+- Solution URL: [https://github.com/davidivad96/rock-paper-scissors-lizard-spock](https://github.com/davidivad96/rock-paper-scissors-lizard-spock)
+- Live Site URL: [https://epic-rpsls.netlify.app/](https://epic-rpsls.netlify.app/)
 
 ## My process
 
