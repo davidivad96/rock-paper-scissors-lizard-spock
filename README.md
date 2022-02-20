@@ -35,6 +35,7 @@ Users should be able to:
 
 - Solution URL: [https://github.com/davidivad96/rock-paper-scissors-lizard-spock](https://github.com/davidivad96/rock-paper-scissors-lizard-spock)
 - Live Site URL: [https://epic-rpsls.netlify.app/](https://epic-rpsls.netlify.app/)
+- Post on my Hashnode blog: [https://davidivad96.hashnode.dev/how-i-built-and-deploy-a-rock-paper-scissors-lizard-spock-web-app](https://davidivad96.hashnode.dev/how-i-built-and-deploy-a-rock-paper-scissors-lizard-spock-web-app)
 
 ## My process
 
